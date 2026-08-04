@@ -1,0 +1,120 @@
+import { useAuth } from '../context/AuthContext';
+
+export const HomeResponsablePage = () => {
+  const { user, logout } = useAuth();
+  const nombre = user?.nombreCompleto || 'Usuario';
+  const {
+    vendedoresPendientes = 0,
+    usuariosTotales = 0,
+    comerciosActivos = 0
+  } = user?.extraData || {};
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', padding: '1rem', gap: '1rem', overflow: 'hidden' }}>
+      
+      {/* Contenedor Superior (Tarjetero Principal) */}
+      <div className="card" style={{ width: '100%', maxWidth: '900px', position: 'relative', padding: '1.5rem' }}>
+        
+        {/* Encabezado */}
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem', position: 'relative' }}>
+          <h1 style={{ color: 'var(--btn-primary)', margin: 0, textAlign: 'center' }}>MendoHard</h1>
+          <button 
+            className="btn-primary" 
+            style={{ position: 'absolute', right: 0, padding: '0.5rem 1rem', fontSize: '0.9rem' }}
+          >
+            Registrar nuevo administrador
+          </button>
+        </div>
+
+        <h2 style={{ marginBottom: '1rem', color: '#1E293B', textAlign: 'left', fontWeight: 700 }}>
+          Buen día {nombre}
+        </h2>
+        
+        {/* Sección de Métricas (3 Columnas) */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginBottom: '1rem', alignItems: 'start' }}>
+          
+          {/* Columna 1: Vendedores Pendientes */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
+            <span style={{ color: '#1E293B', fontWeight: 600, textAlign: 'center' }}>Vendedores Pendientes</span>
+            <div style={{ 
+              backgroundColor: '#FFFFFF', 
+              border: '1px solid var(--border-light)', 
+              borderRadius: '8px', 
+              width: '100%',
+              padding: '1.5rem', 
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              boxShadow: 'var(--shadow-sm)'
+            }}>
+              <span style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1E293B', lineHeight: 1 }}>
+                {vendedoresPendientes}
+              </span>
+            </div>
+            <button className="btn-primary" style={{ width: '100%', fontSize: '0.95rem' }}>Validar vendedor</button>
+          </div>
+
+          {/* Columna 2: Usuarios Totales */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
+            <span style={{ color: '#1E293B', fontWeight: 600, textAlign: 'center' }}>Usuarios Totales</span>
+            <div style={{ 
+              backgroundColor: '#FFFFFF', 
+              border: '1px solid var(--border-light)', 
+              borderRadius: '8px', 
+              width: '100%',
+              padding: '1.5rem', 
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              boxShadow: 'var(--shadow-sm)'
+            }}>
+              <span style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1E293B', lineHeight: 1 }}>
+                {usuariosTotales}
+              </span>
+            </div>
+          </div>
+
+          {/* Columna 3: Comercios Activos */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
+            <span style={{ color: '#1E293B', fontWeight: 600, textAlign: 'center' }}>Comercios Activos</span>
+            <div style={{ 
+              backgroundColor: '#FFFFFF', 
+              border: '1px solid var(--border-light)', 
+              borderRadius: '8px', 
+              width: '100%',
+              padding: '1.5rem', 
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              boxShadow: 'var(--shadow-sm)'
+            }}>
+              <span style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1E293B', lineHeight: 1 }}>
+                {comerciosActivos}
+              </span>
+            </div>
+            <button className="btn-primary" style={{ width: '100%', fontSize: '0.95rem' }}>Validar comercio</button>
+          </div>
+
+        </div>
+        
+        {/* Botón de cerrar sesión alineado abajo */}
+        <div style={{ marginTop: '1rem', textAlign: 'right' }}>
+          <button onClick={logout} style={{ background: 'none', border: 'none', color: 'var(--border-error)', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'Nunito', fontSize: '0.9rem' }}>
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
+
+      {/* Segundo Contenedor (Panel de Acciones Inferior) */}
+      <div className="card" style={{ width: '100%', maxWidth: '900px', padding: '1rem 1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem' }}>
+          <button className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.6rem 0.5rem' }}>Inhabilitar Usuario</button>
+          <button className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.6rem 0.5rem' }}>Gestionar la manera en que se persisten las claves</button>
+          <button className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.6rem 0.5rem' }}>Gestionar Roles / Permisos</button>
+          <button className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.6rem 0.5rem' }}>Gestionar Componentes de Hardware</button>
+        </div>
+      </div>
+
+    </div>
+  );
+};
