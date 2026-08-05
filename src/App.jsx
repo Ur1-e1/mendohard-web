@@ -10,6 +10,7 @@ import { RecuperarClavePage } from './pages/RecuperarClavePage';
 import { HomeConsumidorPage } from './pages/HomeConsumidorPage';
 import { HomeVendedorPage } from './pages/HomeVendedorPage';
 import { HomeResponsablePage } from './pages/HomeResponsablePage';
+import { RegisterResponsablePage } from './pages/RegisterResponsablePage';
 
 function App() {
   return (
@@ -49,6 +50,15 @@ function App() {
                 <HomeResponsablePage />
               </ProtectedRoute>
             } 
+          />
+
+          <Route
+            path="/responsable/registrar"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <RegisterResponsablePage />
+              </ProtectedRoute>
+            }
           />
 
           {/* Redirección por defecto */}

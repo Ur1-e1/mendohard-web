@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export const HomeResponsablePage = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const nombre = user?.nombreCompleto || 'Usuario';
   const {
     vendedoresPendientes = 0,
@@ -20,6 +22,8 @@ export const HomeResponsablePage = () => {
           <h1 style={{ color: 'var(--btn-primary)', margin: 0, textAlign: 'center' }}>MendoHard</h1>
           <button 
             className="btn-primary" 
+            id="btn-registrar-administrador"
+            onClick={() => navigate('/responsable/registrar')}
             style={{ position: 'absolute', right: 0, padding: '0.5rem 1rem', fontSize: '0.9rem' }}
           >
             Registrar nuevo administrador
