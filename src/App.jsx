@@ -3,7 +3,9 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './routes/ProtectedRoute';
 
 import { LoginPage } from './pages/LoginPage';
-import { RegistrarsePage } from './pages/RegistrarsePage';
+import { SelectProfilePage } from './pages/SelectProfilePage';
+import { RegisterConsumerPage } from './pages/RegisterConsumerPage';
+import { RegisterVendorPage } from './pages/RegisterVendorPage';
 import { RecuperarClavePage } from './pages/RecuperarClavePage';
 import { HomeConsumidorPage } from './pages/HomeConsumidorPage';
 import { HomeVendedorPage } from './pages/HomeVendedorPage';
@@ -16,7 +18,9 @@ function App() {
         <Routes>
           {/* Rutas Públicas */}
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/registrarse" element={<RegistrarsePage />} />
+          <Route path="/registrarse" element={<SelectProfilePage />} />
+          <Route path="/registro/consumidor" element={<RegisterConsumerPage />} />
+          <Route path="/registro/vendedor" element={<RegisterVendorPage />} />
           <Route path="/recuperar-clave" element={<RecuperarClavePage />} />
 
           {/* Rutas Protegidas por Rol */}
