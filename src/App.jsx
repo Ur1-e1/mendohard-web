@@ -11,6 +11,8 @@ import { HomeConsumidorPage } from './pages/HomeConsumidorPage';
 import { HomeVendedorPage } from './pages/HomeVendedorPage';
 import { HomeResponsablePage } from './pages/HomeResponsablePage';
 import { RegisterResponsablePage } from './pages/RegisterResponsablePage';
+import { EditConsumerProfilePage } from './pages/EditConsumerProfilePage';
+import { EditVendorProfilePage } from './pages/EditVendorProfilePage';
 
 function App() {
   return (
@@ -57,6 +59,25 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
                 <RegisterResponsablePage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rutas de Modificar Perfil (CU-04) */}
+          <Route
+            path="/perfil/consumidor"
+            element={
+              <ProtectedRoute allowedRoles={['Consumidor']}>
+                <EditConsumerProfilePage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/perfil/vendedor"
+            element={
+              <ProtectedRoute allowedRoles={['Vendedor']}>
+                <EditVendorProfilePage />
               </ProtectedRoute>
             }
           />

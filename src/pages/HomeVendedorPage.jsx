@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export const HomeVendedorPage = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const nombre = user?.nombreCompleto || 'Usuario';
 
   return (
@@ -16,7 +18,11 @@ export const HomeVendedorPage = () => {
             <button className="btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>
               Ver Métricas
             </button>
-            <button className="btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>
+            <button
+              className="btn-primary"
+              style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}
+              onClick={() => navigate('/perfil/vendedor')}
+            >
               Modificar Perfil
             </button>
           </div>
