@@ -6,7 +6,8 @@ import { LoginPage } from './pages/LoginPage';
 import { SelectProfilePage } from './pages/SelectProfilePage';
 import { RegisterConsumerPage } from './pages/RegisterConsumerPage';
 import { RegisterVendorPage } from './pages/RegisterVendorPage';
-import { RecuperarClavePage } from './pages/RecuperarClavePage';
+import { RequestRecoveryPage } from './pages/RequestRecoveryPage';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
 import { HomeConsumidorPage } from './pages/HomeConsumidorPage';
 import { HomeVendedorPage } from './pages/HomeVendedorPage';
 import { HomeResponsablePage } from './pages/HomeResponsablePage';
@@ -24,7 +25,9 @@ function App() {
           <Route path="/registrarse" element={<SelectProfilePage />} />
           <Route path="/registro/consumidor" element={<RegisterConsumerPage />} />
           <Route path="/registro/vendedor" element={<RegisterVendorPage />} />
-          <Route path="/recuperar-clave" element={<RecuperarClavePage />} />
+          {/* Rutas CU-05: Recuperar Credencial (públicas) */}
+          <Route path="/recuperar-credencial" element={<RequestRecoveryPage />} />
+          <Route path="/recuperar-credencial/restablecer" element={<ResetPasswordPage />} />
 
           {/* Rutas Protegidas por Rol */}
           <Route 
