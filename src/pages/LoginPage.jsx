@@ -143,7 +143,7 @@ export const LoginPage = () => {
               placeholder="********"
             />
             <div style={{ textAlign: 'left', marginTop: '0.5rem' }}>
-              <Link to="/recuperar-clave" style={{ fontSize: '0.85rem' }}>
+              <Link to="/recuperar-credencial" style={{ fontSize: '0.85rem' }}>
                 ¿Se olvido la contraseña?
               </Link>
             </div>
