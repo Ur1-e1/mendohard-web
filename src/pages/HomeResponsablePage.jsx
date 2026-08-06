@@ -112,7 +112,7 @@ export const HomeResponsablePage = () => {
       {/* Segundo Contenedor (Panel de Acciones Inferior) */}
       <div className="card" style={{ width: '100%', maxWidth: '900px', padding: '1rem 1.5rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem' }}>
-          <button className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.6rem 0.5rem' }}>Inhabilitar Usuario</button>
+          <button className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.6rem 0.5rem' }} onClick={() => navigate('/usuarios/inhabilitar')}>Inhabilitar Usuario</button>
           <button className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.6rem 0.5rem' }}>Gestionar la manera en que se persisten las claves</button>
           <button className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.6rem 0.5rem' }} onClick={() => navigate('/gestionar-roles')}>Gestionar Roles / Permisos</button>
           <button className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.6rem 0.5rem' }}>Gestionar Componentes de Hardware</button>
