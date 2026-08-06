@@ -12,6 +12,8 @@ export const LoginPage = () => {
   // States for error handling
   const [invalidFields, setInvalidFields] = useState([]);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loginError, setLoginError] = useState('');
   
   // Modals state
   const [showDataInconsistencyModal, setShowDataInconsistencyModal] = useState(false);
@@ -51,8 +53,10 @@ export const LoginPage = () => {
 
     // Reset errors before submit
     setInvalidFields([]);
+    setLoginError('');
     setShowDataInconsistencyModal(false);
     setShowInvalidPasswordModal(false);
+    setIsLoading(true);
 
     try {
       const response = await api.post('/auth/iniciar-sesion', { email, contraseña });
@@ -67,42 +71,40 @@ export const LoginPage = () => {
       
     } catch (error) {
       if (error.response && error.response.data) {
-        const errorData = error.response.data;
-        const errorCode = errorData.errorCode;
-        const invalidFieldsArray = errorData.invalidFields || [];
-        const extraData = errorData.extraData;
+        const { errorCode, invalidFields, extraData, message } = error.response.data;
+        const invalidFieldsArray = invalidFields || [];
 
-        // Caso 1: Validación de Datos / Inconsistencia
-        if (error.response.status === 400 && errorCode === 'DATA_INCONSISTENCY') {
-          setInvalidFields(invalidFieldsArray);
-          setShowDataInconsistencyModal(true);
-        }
-        // Casos de INVALID_CREDENTIALS
-        else if (error.response.status === 401 && errorCode === 'INVALID_CREDENTIALS') {
-          if (!extraData || Object.keys(extraData).length === 0) {
-            // Caso 2: Usuario/Email Incorrecto, Inactivo o Sin Permisos (invalidFields vacio, sin extraData)
-            setInvalidFields(['email', 'contraseña']); // Marcar ambos campos según requerimiento
-            setShowDataInconsistencyModal(true);
-          } else if (invalidFieldsArray.includes('contraseña') && extraData && extraData.cantidad !== undefined) {
-            // Caso 3: Contraseña Incorrecta con Intentos Fallidos
-            setInvalidFields(['contraseña']); // Marcar solo contraseña
-            setFallidosCount(extraData.cantidad);
-            setShowInvalidPasswordModal(true);
-          }
-        }
-        // Caso 4: Intentos Máximos Alcanzados
-        else if (error.response.status === 400 && errorCode === 'MAX_LOGIN_ATTEMPTS_REACHED') {
+        if (errorCode === 'INVALID_CREDENTIALS' && extraData && extraData.cantidad !== undefined) {
+          // Escenario A: Contraseña incorrecta (Email válido)
+          setInvalidFields(invalidFieldsArray.length > 0 ? invalidFieldsArray : ['contraseña']);
+          setFallidosCount(extraData.cantidad);
+          setShowInvalidPasswordModal(true);
+        } else if (errorCode === 'MAX_LOGIN_ATTEMPTS_REACHED') {
+          // Escenario B: Máximo de intentos alcanzados
           setInvalidFields(['email', 'contraseña']);
           setIsSubmitDisabled(true);
           setFallidosCount(10);
           setShowInvalidPasswordModal(true);
+        } else if (errorCode === 'INVALID_CREDENTIALS' && !extraData) {
+          // Escenario C: Usuario Inhabilitado / Credenciales Inválidas Generales
+          setInvalidFields(['email', 'contraseña']);
+          setLoginError('Email o contraseña no válidos / Cuenta inhabilitada');
+        } else if (error.response.status === 400 && errorCode === 'DATA_INCONSISTENCY') {
+          // Otro posible error
+          setInvalidFields(invalidFieldsArray);
+          setShowDataInconsistencyModal(true);
+        } else {
+          console.error("Error al iniciar sesión", error);
+          setInvalidFields(['email', 'contraseña']);
+          setShowDataInconsistencyModal(true);
         }
       } else {
-        // Error de red u otro error inesperado (fallback a algo básico para que no se rompa)
-        console.error("Error al iniciar sesión", error);
+        console.error("Error de red", error);
         setInvalidFields(['email', 'contraseña']);
         setShowDataInconsistencyModal(true);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -127,6 +129,7 @@ export const LoginPage = () => {
             <input 
               type="email"
               className={`form-input ${isInvalid('email') ? 'is-invalid' : ''}`}
+              style={isInvalid('email') ? { border: '2px solid #EF4444' } : {}}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="correo@ejemplo.com"
@@ -138,10 +141,16 @@ export const LoginPage = () => {
             <input 
               type="password"
               className={`form-input ${isInvalid('contraseña') ? 'is-invalid' : ''}`}
+              style={isInvalid('contraseña') ? { border: '2px solid #EF4444' } : {}}
               value={contraseña}
               onChange={(e) => setContraseña(e.target.value)}
               placeholder="********"
             />
+            {loginError && (
+              <div style={{ color: '#EF4444', fontSize: '0.85rem', marginTop: '0.5rem', fontWeight: 'bold' }}>
+                {loginError}
+              </div>
+            )}
             <div style={{ textAlign: 'left', marginTop: '0.5rem' }}>
               <Link to="/recuperar-credencial" style={{ fontSize: '0.85rem' }}>
                 ¿Se olvido la contraseña?
@@ -153,9 +162,9 @@ export const LoginPage = () => {
             type="submit" 
             className="btn-primary" 
             style={{ width: '100%', marginTop: '1rem' }}
-            disabled={isSubmitDisabled}
+            disabled={isSubmitDisabled || isLoading}
           >
-            Ingresar
+            {isLoading ? 'Ingresando...' : 'Ingresar'}
           </button>
         </form>
 

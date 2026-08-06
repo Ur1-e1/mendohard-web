@@ -19,6 +19,9 @@ import { AsignarPermisoModal } from './components/modals/AsignarPermisoModal';
 import { AsignarPermisoSeleccionarModal } from './components/modals/AsignarPermisoSeleccionarModal';
 import { QuitarPermisoModal } from './components/modals/QuitarPermisoModal';
 import { QuitarPermisoSeleccionarModal } from './components/modals/QuitarPermisoSeleccionarModal';
+import { DisableUserPage } from './pages/inhabilitar/DisableUserPage';
+import { DisableConsumerPage } from './pages/inhabilitar/DisableConsumerPage';
+import { DisableVendorPage } from './pages/inhabilitar/DisableVendorPage';
 
 function App() {
   return (
@@ -109,6 +112,32 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
                 <QuitarPermisoSeleccionarModal />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rutas CU-07: Inhabilitar Usuario */}
+          <Route
+            path="/usuarios/inhabilitar"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <DisableUserPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/usuarios/inhabilitar/consumidores"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <DisableConsumerPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/usuarios/inhabilitar/vendedores"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <DisableVendorPage />
               </ProtectedRoute>
             }
           />
