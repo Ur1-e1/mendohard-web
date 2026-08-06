@@ -14,6 +14,11 @@ import { HomeResponsablePage } from './pages/HomeResponsablePage';
 import { RegisterResponsablePage } from './pages/RegisterResponsablePage';
 import { EditConsumerProfilePage } from './pages/EditConsumerProfilePage';
 import { EditVendorProfilePage } from './pages/EditVendorProfilePage';
+import { GestionarRolesPage } from './pages/GestionarRolesPage';
+import { AsignarPermisoModal } from './components/modals/AsignarPermisoModal';
+import { AsignarPermisoSeleccionarModal } from './components/modals/AsignarPermisoSeleccionarModal';
+import { QuitarPermisoModal } from './components/modals/QuitarPermisoModal';
+import { QuitarPermisoSeleccionarModal } from './components/modals/QuitarPermisoSeleccionarModal';
 
 function App() {
   return (
@@ -62,6 +67,48 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
                 <RegisterResponsablePage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rutas CU-06: Gestionar Roles / Permisos */}
+          <Route
+            path="/gestionar-roles"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <GestionarRolesPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/gestionar-roles/asignar"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <AsignarPermisoModal />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/gestionar-roles/asignar/permiso"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <AsignarPermisoSeleccionarModal />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/gestionar-roles/quitar"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <QuitarPermisoModal />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/gestionar-roles/quitar/permiso"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <QuitarPermisoSeleccionarModal />
               </ProtectedRoute>
             }
           />
