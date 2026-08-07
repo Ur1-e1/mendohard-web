@@ -28,6 +28,11 @@ import { ValidarComercioPage } from './pages/validar-comercio/ValidarComercioPag
 import { RegisterCommercePage } from './pages/registrar-comercio/RegisterCommercePage';
 import { SelectCategoryPage } from './pages/buscar-producto/SelectCategoryPage';
 import { SelectProductPage } from './pages/buscar-producto/SelectProductPage';
+import { GestionarComponentesPage } from './pages/abm-producto/GestionarComponentesPage';
+import { AltaComponentePage } from './pages/abm-producto/AltaComponentePage';
+import { ModificarComponenteSeleccionPage } from './pages/abm-producto/ModificarComponenteSeleccionPage';
+import { ModificarComponenteFormPage } from './pages/abm-producto/ModificarComponenteFormPage';
+import { BajaComponentePage } from './pages/abm-producto/BajaComponentePage';
 function App() {
   return (
     <AuthProvider>
@@ -218,6 +223,48 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['Consumidor']}>
                 <SelectProductPage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rutas CU-12: ABM Componentes de Hardware */}
+          <Route
+            path="/admin/componentes"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <GestionarComponentesPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/componentes/alta"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <AltaComponentePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/componentes/modificar"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <ModificarComponenteSeleccionPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/componentes/modificar/:codigo"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <ModificarComponenteFormPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/componentes/baja"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <BajaComponentePage />
               </ProtectedRoute>
             }
           />
