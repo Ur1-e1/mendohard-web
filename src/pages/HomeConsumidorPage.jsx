@@ -33,7 +33,7 @@ export const HomeConsumidorPage = () => {
           </h2>
           
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem' }}>
-            <button className="btn-primary" style={{ padding: '0.85rem 2.5rem', fontSize: '1.1rem' }}>
+            <button className="btn-primary" style={{ padding: '0.85rem 2.5rem', fontSize: '1.1rem' }} onClick={() => navigate('/buscar-categoria')}>
               Buscar Componente de Hardware
             </button>
           </div>
