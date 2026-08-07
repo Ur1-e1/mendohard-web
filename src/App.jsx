@@ -22,7 +22,8 @@ import { QuitarPermisoSeleccionarModal } from './components/modals/QuitarPermiso
 import { DisableUserPage } from './pages/inhabilitar/DisableUserPage';
 import { DisableConsumerPage } from './pages/inhabilitar/DisableConsumerPage';
 import { DisableVendorPage } from './pages/inhabilitar/DisableVendorPage';
-
+import { ValidateVendorListPage } from './pages/validar-vendedor/ValidateVendorListPage';
+import { ValidateVendorDetailPage } from './pages/validar-vendedor/ValidateVendorDetailPage';
 function App() {
   return (
     <AuthProvider>
@@ -138,6 +139,24 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
                 <DisableVendorPage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rutas CU-08: Validar Vendedor */}
+          <Route
+            path="/admin/validar-vendedor"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <ValidateVendorListPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/validar-vendedor/:uCodigo"
+            element={
+              <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
+                <ValidateVendorDetailPage />
               </ProtectedRoute>
             }
           />
