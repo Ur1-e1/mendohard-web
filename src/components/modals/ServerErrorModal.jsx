@@ -5,7 +5,7 @@ import React from 'react';
  * Sigue el mismo sistema de diseño que los modales existentes del proyecto.
  * Props: { isOpen: boolean, onClose: () => void }
  */
-export const ServerErrorModal = ({ isOpen, onClose }) => {
+export const ServerErrorModal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
 
   return (
@@ -82,7 +82,7 @@ export const ServerErrorModal = ({ isOpen, onClose }) => {
           textAlign: 'center',
           lineHeight: '1.5'
         }}>
-          Ocurrió un error interno en el servidor. Por favor, intente nuevamente más tarde.
+          {message || 'Ocurrió un error interno en el servidor. Por favor, intente nuevamente más tarde.'}
         </p>
 
         {/* Botón Aceptar */}

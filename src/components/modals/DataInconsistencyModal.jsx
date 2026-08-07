@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const DataInconsistencyModal = ({ isOpen, onClose }) => {
+export const DataInconsistencyModal = ({ isOpen, onClose, message }) => {
   if (!isOpen) return null;
 
   return (
@@ -75,7 +75,7 @@ export const DataInconsistencyModal = ({ isOpen, onClose }) => {
           marginBottom: '0.5rem',
           textAlign: 'center'
         }}>
-          Datos ingresados no validos
+          {message || 'Datos ingresados no validos'}
         </p>
 
         {/* SUBTEXTO */}

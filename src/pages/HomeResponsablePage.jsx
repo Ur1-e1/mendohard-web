@@ -122,7 +122,7 @@ export const HomeResponsablePage = () => {
                 {comerciosActivos}
               </span>
             </div>
-            <button className="btn-primary" style={{ width: '100%', fontSize: '0.95rem' }}>Validar comercio</button>
+            <button className="btn-primary" style={{ width: '100%', fontSize: '0.95rem' }} onClick={() => navigate('/admin/validar-comercio')}>Validar comercio</button>
           </div>
 
         </div>
