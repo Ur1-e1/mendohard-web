@@ -1,15 +1,41 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { dashboardService } from '../services/dashboardService';
 
 export const HomeResponsablePage = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const nombre = user?.nombreCompleto || 'Usuario';
-  const {
-    vendedoresPendientes = 0,
-    usuariosTotales = 0,
-    comerciosActivos = 0
-  } = user?.extraData || {};
+  
+  const [metricas, setMetricas] = useState({
+    vendedoresPendientes: 0,
+    usuariosTotales: 0,
+    comerciosActivos: 0
+  });
+
+  useEffect(() => {
+    let mounted = true;
+    dashboardService.getMetricasResponsable()
+      .then((data) => {
+        if (mounted) {
+          setMetricas({
+            vendedoresPendientes: data.vendedoresPendientes || 0,
+            usuariosTotales: data.usuariosTotales || 0,
+            comerciosActivos: data.comerciosActivos || 0
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching dashboard metrics', error);
+      });
+    
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const { vendedoresPendientes, usuariosTotales, comerciosActivos } = metricas;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', padding: '1rem', gap: '1rem', overflow: 'hidden' }}>
@@ -55,7 +81,7 @@ export const HomeResponsablePage = () => {
                 {vendedoresPendientes}
               </span>
             </div>
-            <button className="btn-primary" style={{ width: '100%', fontSize: '0.95rem' }}>Validar vendedor</button>
+            <button className="btn-primary" style={{ width: '100%', fontSize: '0.95rem' }} onClick={() => navigate('/admin/validar-vendedor')}>Validar vendedor</button>
           </div>
 
           {/* Columna 2: Usuarios Totales */}
