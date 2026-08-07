@@ -25,7 +25,7 @@ import { DisableVendorPage } from './pages/inhabilitar/DisableVendorPage';
 import { ValidateVendorListPage } from './pages/validar-vendedor/ValidateVendorListPage';
 import { ValidateVendorDetailPage } from './pages/validar-vendedor/ValidateVendorDetailPage';
 import { ValidarComercioPage } from './pages/validar-comercio/ValidarComercioPage';
-
+import { RegisterCommercePage } from './pages/registrar-comercio/RegisterCommercePage';
 function App() {
   return (
     <AuthProvider>
@@ -169,6 +169,16 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
                 <ValidarComercioPage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rutas CU-10: Registrar Comercio */}
+          <Route
+            path="/comercios/registrar"
+            element={
+              <ProtectedRoute allowedRoles={['Vendedor']}>
+                <RegisterCommercePage />
               </ProtectedRoute>
             }
           />
