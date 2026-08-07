@@ -45,7 +45,11 @@ export const HomeVendedorPage = () => {
             <button className="btn-primary" style={{ padding: '0.85rem 2.5rem', fontSize: '1.05rem', width: '100%', maxWidth: '450px' }}>
               Confirmar stock de componentes de hardware
             </button>
-            <button className="btn-primary" style={{ padding: '0.85rem 2.5rem', fontSize: '1.05rem', width: '100%', maxWidth: '450px' }}>
+            <button 
+              className="btn-primary" 
+              style={{ padding: '0.85rem 2.5rem', fontSize: '1.05rem', width: '100%', maxWidth: '450px' }}
+              onClick={() => navigate('/comercios/registrar')}
+            >
               Registrar un nuevo Comercio
             </button>
           </div>
