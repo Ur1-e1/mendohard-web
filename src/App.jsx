@@ -26,6 +26,8 @@ import { ValidateVendorListPage } from './pages/validar-vendedor/ValidateVendorL
 import { ValidateVendorDetailPage } from './pages/validar-vendedor/ValidateVendorDetailPage';
 import { ValidarComercioPage } from './pages/validar-comercio/ValidarComercioPage';
 import { RegisterCommercePage } from './pages/registrar-comercio/RegisterCommercePage';
+import { SelectCategoryPage } from './pages/buscar-producto/SelectCategoryPage';
+import { SelectProductPage } from './pages/buscar-producto/SelectProductPage';
 function App() {
   return (
     <AuthProvider>
@@ -198,6 +200,24 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['Vendedor']}>
                 <EditVendorProfilePage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rutas CU-11: Buscar Producto */}
+          <Route
+            path="/buscar-categoria"
+            element={
+              <ProtectedRoute allowedRoles={['Consumidor']}>
+                <SelectCategoryPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/buscar-producto"
+            element={
+              <ProtectedRoute allowedRoles={['Consumidor']}>
+                <SelectProductPage />
               </ProtectedRoute>
             }
           />
