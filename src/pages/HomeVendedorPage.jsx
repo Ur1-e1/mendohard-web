@@ -42,7 +42,11 @@ export const HomeVendedorPage = () => {
           
           {/* Cuerpo (2 botones centrados) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center', marginBottom: '2.5rem' }}>
-            <button className="btn-primary" style={{ padding: '0.85rem 2.5rem', fontSize: '1.05rem', width: '100%', maxWidth: '450px' }}>
+            <button 
+              className="btn-primary" 
+              style={{ padding: '0.85rem 2.5rem', fontSize: '1.05rem', width: '100%', maxWidth: '450px' }}
+              onClick={() => navigate('/vendedor/comercios')}
+            >
               Confirmar stock de componentes de hardware
             </button>
             <button 
