@@ -37,6 +37,10 @@ import { SelectOptionPage } from './pages/consultar-stock/SelectOptionPage';
 import { SpecificStorePage } from './pages/consultar-stock/SpecificStorePage';
 import { ClosestStoresPage } from './pages/consultar-stock/ClosestStoresPage';
 import { StockMapPage } from './pages/consultar-stock/StockMapPage';
+import { SeleccionarComercioPage } from './pages/confirmar-stock/SeleccionarComercioPage';
+import { SeleccionarConsultaStockPage } from './pages/confirmar-stock/SeleccionarConsultaStockPage';
+import { ConfirmarStockPage } from './pages/confirmar-stock/ConfirmarStockPage';
+
 function App() {
   return (
     <AuthProvider>
@@ -190,6 +194,32 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['Vendedor']}>
                 <RegisterCommercePage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rutas CU-14: Confirmar Stock */}
+          <Route
+            path="/vendedor/comercios"
+            element={
+              <ProtectedRoute allowedRoles={['Vendedor']}>
+                <SeleccionarComercioPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/vendedor/comercios/:cCodigo/consultas"
+            element={
+              <ProtectedRoute allowedRoles={['Vendedor']}>
+                <SeleccionarConsultaStockPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/vendedor/consultas/:csContador/confirmar"
+            element={
+              <ProtectedRoute allowedRoles={['Vendedor']}>
+                <ConfirmarStockPage />
               </ProtectedRoute>
             }
           />
