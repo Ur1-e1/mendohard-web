@@ -33,6 +33,10 @@ import { AltaComponentePage } from './pages/abm-producto/AltaComponentePage';
 import { ModificarComponenteSeleccionPage } from './pages/abm-producto/ModificarComponenteSeleccionPage';
 import { ModificarComponenteFormPage } from './pages/abm-producto/ModificarComponenteFormPage';
 import { BajaComponentePage } from './pages/abm-producto/BajaComponentePage';
+import { SelectOptionPage } from './pages/consultar-stock/SelectOptionPage';
+import { SpecificStorePage } from './pages/consultar-stock/SpecificStorePage';
+import { ClosestStoresPage } from './pages/consultar-stock/ClosestStoresPage';
+import { StockMapPage } from './pages/consultar-stock/StockMapPage';
 function App() {
   return (
     <AuthProvider>
@@ -265,6 +269,40 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
                 <BajaComponentePage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Rutas CU-13: Consultar Stock */}
+          <Route
+            path="/consultar-stock/opciones"
+            element={
+              <ProtectedRoute allowedRoles={['Consumidor']}>
+                <SelectOptionPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/consultar-stock/especifico"
+            element={
+              <ProtectedRoute allowedRoles={['Consumidor']}>
+                <SpecificStorePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/consultar-stock/cercanos"
+            element={
+              <ProtectedRoute allowedRoles={['Consumidor']}>
+                <ClosestStoresPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/consultar-stock/mapa"
+            element={
+              <ProtectedRoute allowedRoles={['Consumidor']}>
+                <StockMapPage />
               </ProtectedRoute>
             }
           />

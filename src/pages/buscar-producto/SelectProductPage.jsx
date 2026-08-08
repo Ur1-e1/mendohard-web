@@ -168,7 +168,7 @@ export const SelectProductPage = () => {
                       cursor: 'pointer',
                       fontFamily: 'Nunito'
                     }}
-                    onClick={() => {}}
+                    onClick={() => navigate('/consultar-stock/opciones', { state: { pCodigo: product.PCodigo } })}
                   >
                     Consultar Stock
                   </button>
