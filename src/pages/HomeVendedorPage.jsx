@@ -15,7 +15,11 @@ export const HomeVendedorPage = () => {
         {/* Módulo de Acciones Superior Derecha (Rectángulo Blanco) */}
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
           <div className="card" style={{ display: 'flex', gap: '1rem', padding: '1rem 1.5rem', width: 'auto' }}>
-            <button className="btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>
+            <button 
+              className="btn-primary" 
+              style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}
+              onClick={() => navigate('/vendedor/metricas/rango')}
+            >
               Ver Métricas
             </button>
             <button

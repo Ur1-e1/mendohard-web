@@ -25,7 +25,10 @@ export const EditConsumerProfilePage = () => {
   });
 
   // Lista de campos con error devueltos por la API
+  // Lista de campos con error devueltos por la API
   const [invalidFields, setInvalidFields] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
+
 
   // Modal activo: 'DATA_INCONSISTENCY' | 'USER_ALREADY_EXISTS' | 'SERVER_ERROR' | null
   const [activeModal, setActiveModal] = useState(null);
@@ -321,15 +324,42 @@ export const EditConsumerProfilePage = () => {
                 <label htmlFor="nuevaContrasenna" style={styles.labelCenter}>
                   En caso de querer (opcional), ingrese nueva Contraseña
                 </label>
-                <input
-                  id="nuevaContrasenna"
-                  type="password"
-                  name="nuevaContrasenna"
-                  value={formData.nuevaContrasenna}
-                  onChange={handleChange}
-                  style={inputStyle('nuevaContrasenna')}
-                  autoComplete="new-password"
-                />
+                <div style={{ position: 'relative', width: '100%' }}>
+                  <input
+                    id="nuevaContrasenna"
+                    type={showPassword ? "text" : "password"}
+                    name="nuevaContrasenna"
+                    value={formData.nuevaContrasenna}
+                    onChange={handleChange}
+                    style={{ ...inputStyle('nuevaContrasenna'), paddingRight: '2.5rem' }}
+                    autoComplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      position: 'absolute',
+                      right: '0.75rem',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '0.25rem'
+                    }}
+                    tabIndex={-1}
+                    title={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                  >
+                    {showPassword ? (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    ) : (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
 

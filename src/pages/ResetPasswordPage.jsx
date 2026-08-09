@@ -35,6 +35,9 @@ export const ResetPasswordPage = () => {
 
   // Estado de validación visual por campo
   const [invalidFields, setInvalidFields] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
 
   // Estado de modales
   const [showDataInconsistencyModal, setShowDataInconsistencyModal] = useState(false);
@@ -234,14 +237,41 @@ export const ResetPasswordPage = () => {
               >
                 Ingrese la Nueva Contraseña
               </label>
-              <input
-                id="reset-nueva-contrasena"
-                type="password"
-                value={nuevaContrasena}
-                onChange={(e) => setNuevaContrasena(e.target.value)}
-                placeholder="••••••••"
-                style={inputStyle('nuevaContrasena')}
-              />
+              <div style={{ position: 'relative', width: '100%' }}>
+                <input
+                  id="reset-nueva-contrasena"
+                  type={showPassword ? "text" : "password"}
+                  value={nuevaContrasena}
+                  onChange={(e) => setNuevaContrasena(e.target.value)}
+                  placeholder="••••••••"
+                  style={{ ...inputStyle('nuevaContrasena'), paddingRight: '2.5rem' }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: '0.75rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '0.25rem'
+                  }}
+                  tabIndex={-1}
+                  title={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                >
+                  {showPassword ? (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                  ) : (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
 
@@ -259,14 +289,41 @@ export const ResetPasswordPage = () => {
             >
               Confirmación Contraseña
             </label>
-            <input
-              id="reset-confirmacion"
-              type="password"
-              value={confirmacionContrasena}
-              onChange={(e) => setConfirmacionContrasena(e.target.value)}
-              placeholder="••••••••"
-              style={inputStyle('confirmacionContrasena')}
-            />
+            <div style={{ position: 'relative', width: '100%' }}>
+              <input
+                id="reset-confirmacion"
+                type={showConfirmPassword ? "text" : "password"}
+                value={confirmacionContrasena}
+                onChange={(e) => setConfirmacionContrasena(e.target.value)}
+                placeholder="••••••••"
+                style={{ ...inputStyle('confirmacionContrasena'), paddingRight: '2.5rem' }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '0.75rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '0.25rem'
+                }}
+                tabIndex={-1}
+                title={showConfirmPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+              >
+                {showConfirmPassword ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Botón Siguiente — centrado */}

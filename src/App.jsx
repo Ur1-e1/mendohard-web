@@ -40,6 +40,8 @@ import { StockMapPage } from './pages/consultar-stock/StockMapPage';
 import { SeleccionarComercioPage } from './pages/confirmar-stock/SeleccionarComercioPage';
 import { SeleccionarConsultaStockPage } from './pages/confirmar-stock/SeleccionarConsultaStockPage';
 import { ConfirmarStockPage } from './pages/confirmar-stock/ConfirmarStockPage';
+import { SeleccionarRangoMetricasPage } from './pages/metricas/SeleccionarRangoMetricasPage';
+import { ResultadosMetricasPage } from './pages/metricas/ResultadosMetricasPage';
 
 function App() {
   return (
@@ -56,31 +58,31 @@ function App() {
           <Route path="/recuperar-credencial/restablecer" element={<ResetPasswordPage />} />
 
           {/* Rutas Protegidas por Rol */}
-          <Route 
-            path="/home-consumidor" 
+          <Route
+            path="/home-consumidor"
             element={
               <ProtectedRoute allowedRoles={['Consumidor']}>
                 <HomeConsumidorPage />
               </ProtectedRoute>
-            } 
+            }
           />
-          
-          <Route 
-            path="/home-vendedor" 
+
+          <Route
+            path="/home-vendedor"
             element={
               <ProtectedRoute allowedRoles={['Vendedor']}>
                 <HomeVendedorPage />
               </ProtectedRoute>
-            } 
+            }
           />
-          
-          <Route 
-            path="/home-responsable" 
+
+          <Route
+            path="/home-responsable"
             element={
               <ProtectedRoute allowedRoles={['Responsable MendoHard']}>
                 <HomeResponsablePage />
               </ProtectedRoute>
-            } 
+            }
           />
 
           <Route
@@ -223,6 +225,25 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          {/* Rutas CU: Ver Métricas */}
+          <Route
+            path="/vendedor/metricas/rango"
+            element={
+              <ProtectedRoute allowedRoles={['Vendedor']} allowedPermissions={['ver_metricas']}>
+                <SeleccionarRangoMetricasPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/vendedor/metricas/resultados"
+            element={
+              <ProtectedRoute allowedRoles={['Vendedor']} allowedPermissions={['ver_metricas']}>
+                <ResultadosMetricasPage />
+              </ProtectedRoute>
+            }
+          />
+
 
           {/* Rutas de Modificar Perfil (CU-04) */}
           <Route
