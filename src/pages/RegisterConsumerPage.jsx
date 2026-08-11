@@ -87,7 +87,7 @@ export const RegisterConsumerPage = () => {
         <h2 style={{ color: '#334155', textAlign: 'center', fontSize: '1.25rem', marginBottom: '1.5rem' }}>Registrarse</h2>
         <p style={{ color: '#334155', textAlign: 'center', marginBottom: '2rem' }}>Ingrese los datos correspondiente como comprador</p>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {/* Fila 1 */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <label style={{ color: '#334155', fontSize: '0.9rem', fontWeight: 'bold' }}>Ingresar el Apodo</label>
@@ -130,7 +130,7 @@ export const RegisterConsumerPage = () => {
           {/* Fila 3 */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <label style={{ color: '#334155', fontSize: '0.9rem', fontWeight: 'bold' }}>Ingresar la Contraseña</label>
+              <label style={{ color: '#334155', fontSize: '0.9rem', fontWeight: 'bold' }}>Ingresar la Contraseña <span style={{ fontSize: '0.85rem', color: '#64748B', fontWeight: 'normal' }}>(Min 8 Caracteres)</span></label>
               <div style={{ position: 'relative', width: '100%' }}>
                 <input 
                   type={showPassword ? "text" : "password"} 

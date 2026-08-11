@@ -51,19 +51,37 @@ export const GestionarRolesPage = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}>
           <button 
             className="btn-primary"
-            onClick={() => handleOptionClick('ABM Rol', null)}
-            disabled={loading}
-            style={{ width: '100%', padding: '0.75rem', fontSize: '1rem', fontWeight: 'bold', backgroundColor: '#4A7BB0', color: '#1E293B', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+            style={{ 
+              width: '100%', 
+              padding: '0.75rem', 
+              fontSize: '1rem', 
+              fontWeight: 'bold', 
+              backgroundColor: '#4A7BB0', 
+              color: '#1E293B', 
+              border: 'none', 
+              borderRadius: '4px', 
+              cursor: 'not-allowed'
+            }}
+            title="Módulo proyectado para la Versión 2.0 (Gobernanza de Seguridad)"
           >
             Dar de alta, modificar o dar de baja un Rol
           </button>
           <button 
             className="btn-primary"
-            onClick={() => handleOptionClick('ABM Permiso', null)}
-            disabled={loading}
-            style={{ width: '100%', padding: '0.75rem', fontSize: '1rem', fontWeight: 'bold', backgroundColor: '#4A7BB0', color: '#1E293B', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+            style={{ 
+              width: '100%', 
+              padding: '0.75rem', 
+              fontSize: '1rem', 
+              fontWeight: 'bold', 
+              backgroundColor: '#4A7BB0', 
+              color: '#1E293B', 
+              border: 'none', 
+              borderRadius: '4px', 
+              cursor: 'not-allowed'
+            }}
+            title="Módulo proyectado para la Versión 2.0 (Gobernanza de Seguridad)"
           >
-            Dar de alta, modificar o dar de baja un Pemiso
+            Dar de alta, modificar o dar de baja un Permiso
           </button>
           <button 
             className="btn-primary"

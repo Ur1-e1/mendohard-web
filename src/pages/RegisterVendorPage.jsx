@@ -224,7 +224,7 @@ export const RegisterVendorPage = () => {
         <h1 style={{ color: '#1E293B', textAlign: 'center', marginBottom: '0.5rem', fontWeight: 'bold' }}>MendoHard</h1>
         <h2 style={{ color: '#334155', textAlign: 'center', fontSize: '1.25rem', marginBottom: '1.5rem' }}>Registrarse</h2>
         
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           
           {/* SECCIÓN 1: DATOS DEL VENDEDOR */}
           <section>
@@ -259,7 +259,7 @@ export const RegisterVendorPage = () => {
                 <input type="text" name="VCategoriaFiscal" placeholder="Ej: Responsable Inscripto" value={formData.VCategoriaFiscal} onChange={handleChange} style={getInputStyle('VCategoriaFiscal')} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <label style={{ color: '#334155', fontSize: '0.9rem', fontWeight: 'bold' }}>Ingresar Contraseña</label>
+                <label style={{ color: '#334155', fontSize: '0.9rem', fontWeight: 'bold' }}>Ingresar Contraseña <span style={{ fontSize: '0.85rem', color: '#64748B', fontWeight: 'normal' }}>(Min 8 Caracteres)</span></label>
                 <div style={{ position: 'relative', width: '100%' }}>
                   <input type={showPassword ? "text" : "password"} name="Contrasena" placeholder="••••••••" value={formData.Contrasena} onChange={handleChange} style={{ ...getInputStyle('Contrasena'), paddingRight: '2.5rem' }} />
                   <button
