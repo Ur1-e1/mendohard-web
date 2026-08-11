@@ -7,6 +7,24 @@ import { DataInconsistencyModal } from '../../components/modals/DataInconsistenc
 import { ResourceNotFoundModal } from '../../components/modals/ResourceNotFoundModal';
 import { ServerErrorModal } from '../../components/modals/ServerErrorModal';
 
+const formatDateTime = (dateString) => {
+  if (!dateString) return null;
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString;
+    return date.toLocaleString('es-AR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  } catch (e) {
+    return dateString;
+  }
+};
+
 // Función para crear un icono custom con SVG
 const getCustomIcon = (color) => {
   const svg = `
@@ -249,7 +267,14 @@ export const StockMapPage = () => {
                     Consulta
                   </h4>
                   <div style={{ fontFamily: 'Nunito', color: '#334155', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                    <p><strong>Fecha respuesta:</strong> {selectedCommerce.ultimaConsulta?.CSFechaHoraRespuesta || "-"}</p>
+                    <p>
+                      <strong>Fecha respuesta:</strong> {
+                        formatDateTime(
+                          selectedCommerce.ultimaConsulta?.CSFechaHoraRespuesta || 
+                          selectedCommerce.ultimaConsulta?.CSFechaHoraSolicitud
+                        ) || "-"
+                      }
+                    </p>
                     <p><strong>Marcas disponibles:</strong> {selectedCommerce.ultimaConsulta?.CSMarcasRespuesta || "-"}</p>
                     <p><strong>Descripcion:</strong> {selectedCommerce.ultimaConsulta?.CSDescripcionRespuesta || "-"}</p>
                     <p><strong>Precio:</strong> {selectedCommerce.ultimaConsulta?.CSPrecioRespuesta ? `$ ${selectedCommerce.ultimaConsulta.CSPrecioRespuesta}` : "-"}</p>
